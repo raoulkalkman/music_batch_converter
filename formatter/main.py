@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 @click.command()
 @click.option('-f', type=str, default=None, help='Path to the folder containing music files. If not provided, user will be prompted.')
-def cli(music_folder: str | None = None):
+def cli(f: str | None = None):
     '''Command line interface for changing file extensions in a given folder.
     Places new files in a subfolder called 'converted'.
     If the folder does not exist, it will be created.
@@ -26,7 +26,7 @@ def cli(music_folder: str | None = None):
         music_folder (str): The path to the folder containing music files.
                             If None, the user will be prompted to enter a folder path.
     '''
-    main(music_folder)
+    main(f)
 
 
 
@@ -56,7 +56,7 @@ def main(music_folder: str | None = None):
         raise ValueError(f'The path {music_folder} is not a valid directory.')
     
     # Create a subfolder for converted files
-    converted_folder = os.path.join(music_folder, 'converted')
+    converted_folder = os.path.join(music_folder, 'wav')
     if not os.path.exists(converted_folder):
         os.makedirs(converted_folder)
 
